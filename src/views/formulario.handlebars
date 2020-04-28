@@ -1,0 +1,30 @@
+<form action="/add" method="POST" >
+    <div>
+        <label for="rel">Fale sobre o aluno: </label><br>
+            <textarea name="relatorio" id="rel" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+            <p> 
+                <label for="dAuditiva">Deficiencia na audição</label>
+                <input type="radio" name="auditiva" id="dAuditiva">
+            
+
+                <label for="dFala">Dificuladades na fala</label>
+                <input type="radio" name="fala" id="dFala">
+
+                <label for="txtrel">Dificuladades na escrita</label>
+                <input type="radio" name="escrita" id="dEscrita" >
+
+                <label for="dLeitura">Dificuladades na leitura</label>
+                <input type="radio" name="leitura" id="dLeitura">
+                
+            </p>
+            <p>
+                <input type="submit" value="Enviar Relatorio" onclick="professor()">
+            </p>
+        </div> 
+        <div id="res"> 
+            Prencha os campos para gerar as atividades!
+        </div>    
+    </form>
+    
