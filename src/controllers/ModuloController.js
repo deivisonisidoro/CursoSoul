@@ -45,15 +45,43 @@ const addDificuldades = async (req, res)=>{
 }    
 
 const editarDificuldadesId = async (req, res)=>{
-    Dificuldade.findOne({where: {'id': req.params.id}}).then((dificuldades)=>{
-        res.render("professor/editaluno",{dificuldades: dificuldades})
+    Dificuldade.findOne({where: {'id': req.params.id}}).then((aluno)=>{
+        
+        return res.render("professor/editanota",{aluno: aluno} )
+              
     }).catch(function(err){
-        req.flash("error_msg", "Este alunonao existe")
-        res.redirect("professor/alunos")
+        req.flash("error_msg", "Este aluno nao existe")
+        res.redirect("/professor/alunos"+ err) 
     })
+}
+
+const editarDificuldades = async (req, res)=>{
+   
+    Dificuldade.findOne({where: {'id': req.params.id}}).then((aluno)=>{
+        aluno.dificuldadesFala = req.body.dificuldadesFala,
+        aluno.dificuldadesEscrita= req.body. dificuldadesEscrita,
+        aluno.dificuldadesAuditiva= req.body.dificuldadesAuditiva,
+        aluno.dificuldadesLeitura= req.body.dificuldadesLeitura,
+        aluno.alunoId = req.params.alunoId
+        aluno.save().then(()=>{
+              req.flash('success_msg', 'Categoria editada com sucesso!')
+              res.redirect("/professor/aluno")
+          }).catch((err)=>{
+              req.flash("error_msg", "Houve um erro interno ao salvar", err)
+              res.redirect("/professor/aluno")
+          })   
+  
+      }).catch(function(erro){
+          req.flash("error_msg", "Este aluno nao existe", erro)
+          res.redirect("/professor/aluno")
+      })       
+}
+const SomadeDificuldades = async (req, res)=>{
+    
 }
 module.exports={
     editarDificuldadesId,
     addDificuldades, 
-    listarAlunos
+    listarAlunos,
+    editarDificuldades
 }

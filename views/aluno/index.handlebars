@@ -1,3 +1,21 @@
-{{#each aluno}}
-<a href="/aluno/{{id}}"><button class="btn btn-dark"> nivel</button></a>
-{{/each}}
+
+<div class="card">
+    <div class="card-body">
+        <form action="/aluno/index/" method="post">
+            <label for="cpf">Digite sua matricula para ter acesso as suas notas</label>
+                <input type="text" name="cpf" placeholder="Digite a matricula" class="form-control" >
+            <br>
+            <button type="submit" class="btn btn-dark"> Conferir</button>
+            
+        </form>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-body">
+        <form action="/download/download.pdf1580065762496.pdf" method="get">
+            <button type="submit" name="file" id="file" class="btn btn-dark" value={{file}}>Download</button>
+        </form>
+    </div>
+</div>

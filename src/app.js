@@ -17,7 +17,7 @@ const flash = require('connect-flash')
 //Carregando validação
 require("./controllers/auth")(passport)
 //require("./controllers/AdminValidacao")(passport)
-const DownloadController= require("./controllers/DownloadController")
+//const DownloadController= require("./controllers/DownloadController")
 //informando da conexao com o banco de dados
 require("./database")
 

@@ -226,24 +226,23 @@ const deleteAlunoController = (req,res) =>{
     })
 }
 const listarDificuldades = async(req, res) =>{
-    const {id} = req.params
-    Aluno.findByPk(id,{
-        include: [{
-            model: Dificuldades,
-            association: 'nivel',
-          
-        }],
+   
+    Aluno.findOne({where:
+        {'cpf': req.body.cpf
         
-      } ).then((aluno)=>{
-             
-                 return res.render("aluno/notasDificuldades",{aluno: aluno} )
-              
-      
-          }).catch(function(err){
-            
-              return  res.redirect("/professor/alunos"+ err) 
-          })            
-       
+        },
+        include: [{
+           model: Dificuldades,
+           association: 'nivel',
+         
+       }]
+   }).then((aluno)=>{
+       return res.render("aluno/notasDificuldades",{aluno: aluno} )
+   }).catch(function(err){
+           
+       return  res.redirect("/alunos/"+ err) 
+   })
+
 }
     
 const listarNotas = async (req, res) =>{

@@ -2,7 +2,7 @@ const passport = require("passport")
 
 const entrarAluno =async (req, res, next ) =>{
     passport.authenticate("local-aluno", {
-        successRedirect: "/aluno/index/userId",
+        successRedirect: "/aluno/",
         failureRedirect: "/aluno/login",
         failureFlash: true
     

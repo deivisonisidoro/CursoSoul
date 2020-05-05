@@ -7,9 +7,11 @@ const LoginController = require("../controllers/LoginController")
 //importando controllers
 const AlunoController = require("../controllers/AlunoController")
 
-routes.get("/", AlunoController.listarDificuldades)
+routes.get("/", (req,res)=>{
+    res.render("aluno/index")
+})
 
-routes.get("/index/:email", AlunoController.listarDificuldades)
+routes.post("/index/", AlunoController.listarDificuldades)
 
 routes.get("/login", (req, res)=>{
     res.render("aluno/login")
