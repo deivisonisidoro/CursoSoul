@@ -1,0 +1,31 @@
+{{#each erro}}
+    <div class="alert alert-danger">{{texto}}</div>
+    {{else}}
+{{/each}}
+
+
+<h1>{{aluno.nome}}</h1>
+
+
+
+<div class="card">
+    <div class="card-body">
+        <form action="/professor/aluno/dificuldades/{{aluno.id}}" method="POST">
+            <label for="dificuldadesFala">Fala:</label>
+                <input type="number" name="dificuldadesFala" id="dificuldadesFala" placeholder="nivel de Fala" class="form-control">
+        
+             <label for="dificuldadesEscrita">Escrita:</label>
+                <input type="number" name="dificuldadesEscrita" id="dificuldadesEscrita" placeholder="nivel de Escrita" class="form-control">
+         
+         <label for="dificuldadesAuditiva">Auditiva:</label>
+                <input type="number" name="dificuldadesAuditiva" id="dificuldadesAuditiva" placeholder="nivel de Auditiva" class="form-control">
+        
+         <label for="dificuldadesLeitura">Leitura:</label>
+                <input type="number" name="dificuldadesLeitura" id="dificuldadesLeitura" placeholder="nivel de Leitura:" class="form-control">
+
+            <br>
+            <button type="submit" class="btn btn-dark">Adcionar</button>
+        </form>
+    </div>
+</div>
+

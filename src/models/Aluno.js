@@ -31,9 +31,9 @@ class Aluno extends Model{
     }
     
     
-    /*static associate(models){
-        this.belongsTo(models.Aluno, {foreignKey: 'dificuldadesAtv', as: "nivel"})
-    }*/
+    static associate(models){
+        this.hasOne(models.Dificuldade, {foreignKey: 'alunoId', as: "nivel"})
+    }
 
 }
 

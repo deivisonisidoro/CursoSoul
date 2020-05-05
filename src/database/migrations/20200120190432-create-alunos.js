@@ -11,6 +11,7 @@ module.exports = {
           autoIncrement:true,
           allowNull: false
         },
+        
         nome:{
           type: Sequelize.STRING, 
           allowNull: false
@@ -52,6 +53,10 @@ module.exports = {
         respon:{
           type: Sequelize.STRING,
           allowNull: false,
+        },
+        relatorio:{
+          type: Sequelize.TEXT,
+          defaultValue: "Sem relatorio"
         },
         createdAt:{
           type:Sequelize.DATE,

@@ -11,12 +11,12 @@ module.exports = {
           autoIncrement:true,
           allowNull: false
         },
-        emailAdmin:{
+        email:{
           type: Sequelize.STRING,
           allowNull: false,
           unique: true,
         },
-        senhaAdmin:{
+        senha:{
           type: Sequelize.STRING,
           allowNull: false,
         },

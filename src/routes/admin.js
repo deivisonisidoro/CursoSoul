@@ -3,13 +3,13 @@
    require ('passport')  
 
 //importando models
-   const Aluno = require("../models/Aluno")
-   const Atividade= require('../models/Atividade')
+   
 
 //importando controllers
    const AlunoController = require("../controllers/AlunoController")
-   const AtividadeController = require('../controllers/AtividadeController')
-   const {eadmin} = require("../controllers/eadmin")
+
+  //const {eadmin} = require("../controllers/eadmin")
+   const ProfessorController= require("../controllers/ProfessorController")
    const AdminController= require("../controllers/AdminController")
    const LoginController= require("../controllers/LoginController")
 
@@ -31,10 +31,21 @@
    routes.get("/index",  (req, res) => {
       res.render("admin/index")
    })
+   
+   routes.get("/professor/",  (req, res) => {
+      res.render("professor/index")
+   })
+       
+   routes.get('/professor/add', (req, res) =>{
+      res.render("admin/addprofessor")
+   })
+
+   routes.post("/professor/add", ProfessorController.addProfessorController)
+
    routes.get('/aluno',  AlunoController.lisAlunoController)
 
    routes.get('/aluno/add',  (req, res) =>{
-      res.render("admin/addaluno")
+      res.render("aluno/addaluno")
    })
    routes.post('/aluno/novo', AlunoController.addAlunoController) 
 
@@ -44,12 +55,6 @@
 
    routes.post("/aluno/deletar", AlunoController.deleteAlunoController) 
    
-   routes.get("/atividades",   AtividadeController.listarAtividadeController)
 
-   routes.get("/atividades/add", (req, res) => {
-      res.render("admin/addatividades")
-      })
-   
-   routes.post("/atividades/nova", eadmin, AtividadeController.addAividadeController)
 
 module.exports = routes

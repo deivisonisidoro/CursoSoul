@@ -1,8 +1,8 @@
 const passport = require("passport")
 
 const entrarAluno =async (req, res, next ) =>{
-    passport.authenticate("local", {
-        successRedirect: "/aluno/",
+    passport.authenticate("local-aluno", {
+        successRedirect: "/aluno/index/userId",
         failureRedirect: "/aluno/login",
         failureFlash: true
     
@@ -10,9 +10,19 @@ const entrarAluno =async (req, res, next ) =>{
     
 }
 const entrarAdmin =async (req, res, next ) =>{
-    passport.authenticate("local", {
+    passport.authenticate("local-admin", {
         successRedirect: "/admin/index",
         failureRedirect: "/admin/login",
+        failureFlash: true
+    
+    })(req, res, next)
+    
+}
+
+const entrarProfessor =async (req, res, next ) =>{
+    passport.authenticate("local-professor", {
+        successRedirect: "/professor/index",
+        failureRedirect: "/professor/login",
         failureFlash: true
     
     })(req, res, next)
@@ -27,5 +37,6 @@ const sair= async (req, res)=>{
 module.exports ={
     entrarAluno,
     entrarAdmin,
+    entrarProfessor,
     sair,
 }

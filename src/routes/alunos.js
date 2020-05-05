@@ -1,15 +1,16 @@
 const expres = require("express")
 const routes = expres.Router()
 const LoginController = require("../controllers/LoginController")
-const passport = require("passport")
+
 
 
 //importando controllers
 const AlunoController = require("../controllers/AlunoController")
 
-routes.get("/", (req, res)=>{
-    res.render("aluno/index")
-})
+routes.get("/", AlunoController.listarDificuldades)
+
+routes.get("/index/:email", AlunoController.listarDificuldades)
+
 routes.get("/login", (req, res)=>{
     res.render("aluno/login")
 })
@@ -20,6 +21,11 @@ routes.get("/logout", LoginController.sair)
 routes.get('/add', (req, res) =>{
     res.render("aluno/addaluno")
  })
+ routes.get("/teste", (req, res)=>{
+    res.render("aluno/teste")
+ })
 routes.post("/novo", AlunoController.somaAlunoController)
+
+routes.get("/nivelDificuldades/:id", AlunoController.listarDificuldades)
 
 module.exports = routes

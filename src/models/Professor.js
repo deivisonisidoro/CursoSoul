@@ -27,10 +27,7 @@ class Professor extends Model{
         
     }
     
-    
-    /*static associate(models){
-        this.belongsTo(models.Aluno, {foreignKey: 'dificuldadesAtv', as: "nivel"})
-    }*/
+   
 
 }
 

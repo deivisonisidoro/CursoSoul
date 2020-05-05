@@ -1,7 +1,6 @@
 const Aluno = require("../models/Aluno")
-const Admin = require("../models/Admin")
-const bcrypt = require('bcryptjs')
-const passport = require("passport")
+const Dificuldades = require("../models/Dificuldade")
+
 
 
 const lisAlunoController= async (req, res) =>{
@@ -33,7 +32,7 @@ const addAlunoController= async(req, res)=>{
             erro.push({texto: "Turma invalida"})
         }
         if (!req.body.email || typeof req.body.email == undefined|| req.body.email == null ){
-            erro.push({texto: "Endereco invalida"})
+            erro.push({texto: "Email invalido"})
         }
         
         if (!req.body.senha || typeof req.body.senha == undefined|| req.body.senha == null ){
@@ -226,6 +225,38 @@ const deleteAlunoController = (req,res) =>{
         res.redirect("/admin/aluno")
     })
 }
+const listarDificuldades = async(req, res) =>{
+    const {id} = req.params
+    Aluno.findByPk(id,{
+        include: [{
+            model: Dificuldades,
+            association: 'nivel',
+          
+        }],
+        
+      } ).then((aluno)=>{
+             
+                 return res.render("aluno/notasDificuldades",{aluno: aluno} )
+              
+      
+          }).catch(function(err){
+            
+              return  res.redirect("/professor/alunos"+ err) 
+          })            
+       
+}
+    
+const listarNotas = async (req, res) =>{
+    
+    Aluno.findAll( ).then((aluno)=>{
+        return res.render("aluno/index", {aluno: aluno} )  
+    }).catch((err) => {        
+        req.flash("error_msg", "Houve um erro ao listar os alunos"+ err)
+        return  res.redirect("/aluno/login") 
+        })
+    
+}
+     
 
 module.exports = {
     lisAlunoController,
@@ -234,7 +265,9 @@ module.exports = {
     editAlunoController,
     deleteAlunoController,
     somaAlunoController,
-    }
+    listarDificuldades,
+    //listarNotas,
+}
 
      
            

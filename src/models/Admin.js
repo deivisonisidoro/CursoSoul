@@ -5,8 +5,8 @@ class Admin extends Model{
     static init(connection){
         super.init({
             
-            emailAdmin: DataTypes.STRING,
-            senhaAdmin: DataTypes.STRING,
+            email: DataTypes.STRING,
+            senha: DataTypes.STRING,
             eAdmin: DataTypes.INTEGER,
             
 
@@ -15,9 +15,9 @@ class Admin extends Model{
         })
         Admin.beforeCreate((admin, options) => {
 
-            return bcrypt.hash(admin.senhaAdmin, 10)
+            return bcrypt.hash(admin.senha, 10)
                 .then(hash => {
-                    admin.senhaAdmin = hash;
+                    admin.senha = hash;
                 })
                 .catch(err => { 
                     throw new Error(); 

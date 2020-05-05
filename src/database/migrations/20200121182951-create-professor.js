@@ -3,7 +3,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     
-    return queryInterface.createTable('professores', { 
+    return queryInterface.createTable('professors', { 
         
       id: {
         type: Sequelize.INTEGER,
@@ -11,24 +11,24 @@ module.exports = {
         autoIncrement:true,
         allowNull: false
       },
-      nomeProf:{
+      nome:{
         type: Sequelize.STRING, 
         allowNull: false
       }, 
-      cpfProf: {
+      cpf: {
         type: Sequelize.STRING,
         allowNull:false,
         unique: true
       }, 
-      enderecoProf:{
+      endereco:{
         type: Sequelize.STRING,
         allowNull: false,
       },
-      telefoneProf:{
+      telefone:{
         type: Sequelize.STRING,
         allowNull: false,
       },
-      emailProf:{
+      email:{
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
@@ -37,11 +37,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: '1'
       },
-      senhaProf:{
+      senha:{
         type: Sequelize.STRING,
         allowNull: false,
       },
-      LocalTrabalho:{
+      localTrabalho:{
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -60,6 +60,6 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
    
-      return queryInterface.dropTable('professor');
+      return queryInterface.dropTable('professors');
     }
 };

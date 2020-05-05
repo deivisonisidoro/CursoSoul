@@ -5,32 +5,32 @@ const Admin = require("../models/Admin")
 const addAdminController= async(req, res)=>{
         var erro=[]
         
-        if (!req.body.emailAdmin || typeof req.body.emailAdmin == undefined|| req.body.emailAdmin == null ){
+        if (!req.body.email|| typeof req.body.email == undefined|| req.body.email == null ){
             erro.push({texto: "Email invalido"})
         }
         
-        if (!req.body.senhaAdmin || typeof req.body.senhaAdmin == undefined|| req.body.senhaAdmin == null ){
+        if (!req.body.senha || typeof req.body.senha == undefined|| req.body.senha == null ){
             erro.push({texto: "Senha invalida"})
         }
         
-        if (!req.body.senhaAdmin > 4){
+        if (!req.body.senha > 4){
             erro.push({texto: "Senha muito curta"})
         }
-        if (!req.body.senhaAdmin == req.body.senha2Admin){
+        if (!req.body.senha == req.body.senha2){
             erro.push({texto: "As senhas sâo diferentes tente novamente"})
         }
         if (erro.length> 0) {
             res.render("admin/addadmin", {erro: erro})
         }else{   
-          Admin.findOne({where: {'emailAdmin': req.body.emailAdmin}}).then((admin)=>{
+          Admin.findOne({where: {'email': req.body.email}}).then((admin)=>{
             if(admin){
                     req.flash("error_msg", "Já existe uma conta com esse email no nosso sistema")
                     res.redirect("/admin/add")
                 }else{
                     Admin.create({
                         id: req.body.id,
-                        emailAdmin: req.body.emailAdmin,
-                        senhaAdmin: req.body.senhaAdmin,
+                        email: req.body.email,
+                        senha: req.body.senha,
 
                     }).then(()=>{
                         req.flash("success_msg", "Admin cadastrado com sucesso!")

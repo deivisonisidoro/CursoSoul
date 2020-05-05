@@ -5,18 +5,19 @@ const bodyParser = require('body-parser')
 const app = express()
 const admin = require("./routes/admin")
 const aluno= require("./routes/alunos")
-const professor= require("./routes/professor")
+const professor = require("./routes/professor")
 const path = require('path')
 const passport= require("passport")
-
-
+const compress =  require("compression")
+const fs = require("fs")
+const http = require("http")
 const session = require('express-session')
 const flash = require('connect-flash')
 
 //Carregando validação
-require("./controllers/AlunoValidacao")(passport)
+require("./controllers/auth")(passport)
 //require("./controllers/AdminValidacao")(passport)
-
+const DownloadController= require("./controllers/DownloadController")
 //informando da conexao com o banco de dados
 require("./database")
 
@@ -39,7 +40,9 @@ require("./database")
         res.locals.error = req.flash("error")
         res.locals.user = req.user
         next()
-    })    
+    }) 
+    
+    
 //Config
     // Template Engine
         app.engine('handlebars', handlebars({ defaultLayout: 'main'}))
@@ -52,6 +55,8 @@ require("./database")
    
     //Public
         app.use(express.static(path.join(__dirname,"public")))
+        app.use("/uploads",express.static(path.join(__dirname,"uploads")))
+        
         
     // Rotas
         app.get("/", (req, res)=>{
@@ -60,6 +65,18 @@ require("./database")
         app.use('/admin', admin)
         app.use('/aluno', aluno)
         app.use('/professor', professor)
+
+        
+        app.get('/download/:file(*)',(req, res) => {
+            var file = req.params.file;
+            var fileLocation = path.join('./uploads',file);
+            console.log(fileLocation);
+            res.download( fileLocation, file); 
+          });
+        
+        
+        
+        //app.get("/index", DownloadController.myController)
 
 //Outros   
     const PORT = 8081

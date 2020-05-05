@@ -1,0 +1,16 @@
+<h2>Lista de aluno</h2>
+<hr>
+
+{{#each aluno}}
+    <div class="card-body">
+        <h4 class="mt-4">{{nome}}</h4>
+        <h5> Cpf: {{cpf}}</h5>
+        <h6>Turma: {{turma}}</h6>
+        <a href="/professor/aluno/relatorio/{{id}}"><button class="btn btn-dark mt-4">Relatorio</button></a>
+        <a href="/professor/aluno/dificuldades/{{id}}"><button class="btn btn-dark mt-4">Nivel de Dificuldades</button></a>
+   
+    </div>
+
+    {{else}}
+<h4 class="mt-4">Nenhum aluno registrado</h4>
+{{/each}}
