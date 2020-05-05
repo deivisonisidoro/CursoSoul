@@ -1,0 +1,18 @@
+<h2>Lista de aluno</h2>
+<hr>
+<a href="/admin/aluno/add"><button class="btn btn-dark">Novo aluno</button></a>
+
+{{#each aluno}}
+    <div class="card-body">
+        <h4 class="mt-4">{{nome}}</h4>
+        <h5> {{dificuldades}}</h5>
+        <h6>{{idade}} anos</h6>
+        <a href="/admin/aluno/edit/{{id}}"><button class="btn btn-dark mt-4">Editar aluno</button></a>
+    </div>
+    <form action="/admin/aluno/deletar" method="post">
+        <input type="hidden" name="id" value="{{id}}">
+        <button type="submit" class="btn btn-danger mt-2">Deletar aluno</button>
+    </form>
+    {{else}}
+<h4 class="mt-4">Nenhum aluno registrado</h4>
+{{/each}}
